@@ -1,0 +1,29 @@
+{
+  "name": "webscraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcowles3/MongoDB-Scraper.git"
+  },
+  "author": "Ryan Cowles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rcowles3/MongoDB-Scraper/issues"
+  },
+  "homepage": "https://github.com/rcowles3/MongoDB-Scraper#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "mongojs": "^2.4.1",
+    "mongoose": "^4.11.7",
+    "morgan": "^1.8.2",
+    "request": "^2.81.0"
+  }
+}
