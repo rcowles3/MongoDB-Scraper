@@ -24,6 +24,10 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
+  sport: {
+    type:String,
+    required:true
+  },
   // saved article as a boolean
   saved: {
     type: Boolean,

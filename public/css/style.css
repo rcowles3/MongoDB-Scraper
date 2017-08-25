@@ -111,6 +111,7 @@ body {
   -------------------------------------------------- */
 
 .card {
-    margin: 5px;
+    margin: 15px;
     padding: 5px;
+    display: -webkit-inline-box
 }
