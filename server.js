@@ -88,81 +88,86 @@ app.get("/scrape", function (req, res) {
 
   });
 
+  // ==================================================
+  // Multisport Scrape
+  // ==================================================
   // First, we grab the body of the html with request, ESPN.com/NBA
-  request("http://www.espn.com/mlb", function (error, response, html) {
-    // Then, we load that into cheerio and save it to $ for a shorthand selector
-    var $ = cheerio.load(html);
-    // Now, we grab every h2 within an article tag, and do the following:
-    $(".contentItem__padding").each(function (i, element) {
+  // request("http://www.espn.com/mlb", function (error, response, html) {
+  //   // Then, we load that into cheerio and save it to $ for a shorthand selector
+  //   var $ = cheerio.load(html);
+  //   // Now, we grab every h2 within an article tag, and do the following:
+  //   $(".contentItem__padding").each(function (i, element) {
 
-      // Save an empty result object
-      var result = {};
+  //     // Save an empty result object
+  //     var result = {};
 
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children("div").children("h1").text();
-      result.description = $(this).children("div").children("p").text();
-      result.link = $(this).attr("href");
-      result.img = $(this).children("figure").children("picture").children("img").attr("data-default-src");
-      result.sport = "MLB";
+  //     // Add the text and href of every link, and save them as properties of the result object
+  //     result.title = $(this).children("div").children("h1").text();
+  //     result.description = $(this).children("div").children("p").text();
+  //     result.link = $(this).attr("href");
+  //     result.img = $(this).children("figure").children("picture").children("img").attr("data-default-src");
+  //     result.sport = "MLB";
 
-      // Using our Article model, create a new entry
-      // This effectively passes the result object to the entry (and the title and link)
-      var newArticle = new Article(result);
+  //     // Using our Article model, create a new entry
+  //     // This effectively passes the result object to the entry (and the title and link)
+  //     var newArticle = new Article(result);
 
-      // Now, save that entry to the db
-      newArticle.save(function (err, doc) {
-        // Log any errors
-        if (err) {
-          console.log(err);
-        }
-        // Or log the doc
-        else {
-          console.log(doc);
-        }
-      });
+  //     // Now, save that entry to the db
+  //     newArticle.save(function (err, doc) {
+  //       // Log any errors
+  //       if (err) {
+  //         console.log(err);
+  //       }
+  //       // Or log the doc
+  //       else {
+  //         console.log(doc);
+  //       }
+  //     });
 
-      console.log("MAJOR LEAGUE BASEBALL\n\n", result);
-    });
+  //     console.log("MAJOR LEAGUE BASEBALL\n\n", result);
+  //   });
 
-  });
+  // });
 
-  // First, we grab the body of the html with request, ESPN.com/NBA
-  request("http://www.espn.com/nfl", function (error, response, html) {
-    // Then, we load that into cheerio and save it to $ for a shorthand selector
-    var $ = cheerio.load(html);
-    // Now, we grab every h2 within an article tag, and do the following:
-    $(".contentItem__padding").each(function (i, element) {
+  // // First, we grab the body of the html with request, ESPN.com/NBA
+  // request("http://www.espn.com/nfl", function (error, response, html) {
+  //   // Then, we load that into cheerio and save it to $ for a shorthand selector
+  //   var $ = cheerio.load(html);
+  //   // Now, we grab every h2 within an article tag, and do the following:
+  //   $(".contentItem__padding").each(function (i, element) {
 
-      // Save an empty result object
-      var result = {};
+  //     // Save an empty result object
+  //     var result = {};
 
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children("div").children("h1").text();
-      result.description = $(this).children("div").children("p").text();
-      result.link = $(this).attr("href");
-      result.img = $(this).children("figure").children("picture").children("img").attr("data-default-src");
-      result.sport = "NFL";
+  //     // Add the text and href of every link, and save them as properties of the result object
+  //     result.title = $(this).children("div").children("h1").text();
+  //     result.description = $(this).children("div").children("p").text();
+  //     result.link = $(this).attr("href");
+  //     result.img = $(this).children("figure").children("picture").children("img").attr("data-default-src");
+  //     result.sport = "NFL";
 
-      // Using our Article model, create a new entry
-      // This effectively passes the result object to the entry (and the title and link)
-      var newArticle = new Article(result);
+  //     // Using our Article model, create a new entry
+  //     // This effectively passes the result object to the entry (and the title and link)
+  //     var newArticle = new Article(result);
 
-      // Now, save that entry to the db
-      newArticle.save(function (err, doc) {
-        // Log any errors
-        if (err) {
-          console.log(err);
-        }
-        // Or log the doc
-        else {
-          console.log(doc);
-        }
-      });
+  //     // Now, save that entry to the db
+  //     newArticle.save(function (err, doc) {
+  //       // Log any errors
+  //       if (err) {
+  //         console.log(err);
+  //       }
+  //       // Or log the doc
+  //       else {
+  //         console.log(doc);
+  //       }
+  //     });
 
-      console.log("NATIONAL FOOTBALL LEAGUE\n\n", result);
-    });
+  //     console.log("NATIONAL FOOTBALL LEAGUE\n\n", result);
+  //   });
 
-  });
+  // });
+  // ==================================================
+  // ==================================================
   // Tell the browser that we finished scraping the text
   res.send("Scrape Complete");
 });
