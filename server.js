@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/ESPN", {
+mongoose.connect("mongodb://heroku_5561mt58:rvrb2ap0lnnu1v971v107hi5fd@ds031632.mlab.com:31632/heroku_5561mt58", {
   useMongoClient: true
 });
 var db = mongoose.connection;
@@ -169,7 +169,7 @@ app.get("/scrape", function (req, res) {
   // ==================================================
   // ==================================================
   // Tell the browser that we finished scraping the text
-  res.send("Scrape Complete");
+  res.redirect("Scrape Complete");
 });
 
 // This will get the articles we scraped from the mongoDB
