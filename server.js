@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://heroku_5561mt58:rvrb2ap0lnnu1v971v107hi5fd@ds031632.mlab.com:31632/heroku_5561mt58", {
+mongoose.connect("mongodb://localhost/ESPN", {
   useMongoClient: true
 });
 var db = mongoose.connection;
@@ -188,7 +188,7 @@ app.get("/articles", function (req, res) {
 });
 
 app.get("/:sport", function (req, res) {
-  
+
   Article.find({ "sport": req.params.sport })
     // .populate("comment")
     // now, execute our query
@@ -209,7 +209,7 @@ app.get("/articles/:id", function (req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   Article.findOne({ "_id": req.params.id })
     // ..and populate all of the comments associated with it
-    .populate("comment")
+    // .populate("comment")
     // now, execute our query
     .exec(function (error, doc) {
       // Log any errors
@@ -223,36 +223,50 @@ app.get("/articles/:id", function (req, res) {
     });
 });
 
+// Route to grab articles that have been saved
+app.get("/articles/saved", function (req, res) {
+  Article.find({ "saved": true })
+    .exec(function (error, doc) {
+      // Log any errors
+      if (error) {
+        console.log(error);
+      }
+      // Otherwise, send the doc to the browser as a json object
+      else {
+        res.json(doc);
+      }
+    });
+})
 
 // Create a new comment or replace an existing comment
 app.post("/articles/:id", function (req, res) {
   // Create a new comment and pass the req.body to the entry
-  var newComment = new Comment(req.body);
+  // var newComment = new Comment(req.body);
 
-  // And save the new comment the db
-  newComment.save(function (error, doc) {
-    // Log any errors
-    if (error) {
-      console.log(error);
-    }
-    // Otherwise
-    else {
-      // Use the article id to find and update it's comment
-      Article.findOneAndUpdate({ "_id": req.params.id }, { "comment": doc._id })
-        // Execute the above query
-        .exec(function (err, doc) {
-          // Log any errors
-          if (err) {
-            console.log(err);
-          }
-          else {
-            // Or send the document to the browser
-            res.send(doc);
-          }
-        });
-    }
-  });
+  // // And save the new comment the db
+  // newComment.save(function (error, doc) {
+  //   // Log any errors
+  //   if (error) {
+  //     console.log(error);
+  //   }
+  //   // Otherwise
+  //   else {
+  // Use the article id to find and update it's comment
+  Article.findOneAndUpdate({ "_id": req.params.id }, { "saved": true })
+    // Execute the above query
+    .exec(function (err, doc) {
+      // Log any errors
+      if (err) {
+        console.log(err);
+      }
+      else {
+        // Or send the document to the browser
+        res.send(doc);
+      }
+    });
+  // }
 });
+// });
 
 
 // Listen on port 3000
