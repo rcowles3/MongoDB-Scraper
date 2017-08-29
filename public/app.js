@@ -55,10 +55,35 @@ $(document).on("click", "#saveBtn", function () {
 
     $.ajax({
         method: "POST",
-        url: "/articles/" + thisId
-
+        url: "/articles/" + thisId,
+        data: {
+            "saved": true
+        }
     }).done(function (data) {
+        location.reload();
         console.log(data);
-
     })
 });
+
+// When someone clicks to delete a saved article, remove from mongoDB
+$(document).on("click", "#deleteBtn", function () {
+
+    var thisId = $(this).attr("data-id");
+
+    console.log("Article Saved ID: \n\n", thisId);
+
+    $.ajax({
+        method: "POST",
+        url: "/articles/" + thisId,
+        data: {
+            "saved": false
+        }
+    }).done(function (data) {
+        location.reload();
+        console.log(data);
+    })
+});
+
+// Click to add a note
+
+// Click to delete a note

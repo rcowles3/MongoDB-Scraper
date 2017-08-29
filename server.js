@@ -228,7 +228,7 @@ app.get("/articles/:id", function (req, res) {
 app.post("/articles/:id", function (req, res) {
   // Create a new comment and pass the req.body to the entry
   // var newComment = new Comment(req.body);
-
+console.log(req);
   // // And save the new comment the db
   // newComment.save(function (error, doc) {
   //   // Log any errors
@@ -238,7 +238,7 @@ app.post("/articles/:id", function (req, res) {
   //   // Otherwise
   //   else {
   // Use the article id to find and update it's comment
-  Article.findOneAndUpdate({ "_id": req.params.id }, { "saved": true })
+  Article.findOneAndUpdate({ "_id": req.params.id }, { "saved": req.body.saved })
     // Execute the above query
     .exec(function (err, doc) {
       // Log any errors
