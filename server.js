@@ -175,6 +175,7 @@ app.get("/scrape", function (req, res) {
 // This will get the articles we scraped from the mongoDB
 app.get("/articles", function (req, res) {
   // Grab every doc in the Articles array
+  // console.log("test");
   Article.find({}, function (error, doc) {
     // Log any errors
     if (error) {
@@ -223,21 +224,6 @@ app.get("/articles/:id", function (req, res) {
     });
 });
 
-// Route to grab articles that have been saved
-app.get("/articles/saved", function (req, res) {
-  Article.find({ "saved": true })
-    .exec(function (error, doc) {
-      // Log any errors
-      if (error) {
-        console.log(error);
-      }
-      // Otherwise, send the doc to the browser as a json object
-      else {
-        res.json(doc);
-      }
-    });
-})
-
 // Create a new comment or replace an existing comment
 app.post("/articles/:id", function (req, res) {
   // Create a new comment and pass the req.body to the entry
@@ -261,13 +247,12 @@ app.post("/articles/:id", function (req, res) {
       }
       else {
         // Or send the document to the browser
-        res.send(doc);
+        res.json(doc);
       }
     });
   // }
 });
 // });
-
 
 // Listen on port 3000
 app.listen(3000, function () {
