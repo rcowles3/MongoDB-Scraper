@@ -15,6 +15,10 @@ var cheerio = require("cheerio");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
 
+// Variable to hold our Database connections
+var herokuDeploy = "mongodb://heroku_5561mt58:rvrb2ap0lnnu1v971v107hi5fd@ds031632.mlab.com:31632/heroku_5561mt58";
+var localDeploy = "mongodb://localhost/ESPN";
+
 
 // Initialize Express
 var app = express();
@@ -29,7 +33,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/ESPN", {
+mongoose.connect(herokuDeploy, {
   useMongoClient: true
 });
 var db = mongoose.connection;
