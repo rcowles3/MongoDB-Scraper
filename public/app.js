@@ -2,8 +2,10 @@
 $.getJSON("/articles", function (data) {
     // console.log(data);
     for (var i = 0; i < data.length; i++) {
+
         if (data[i].saved) {
-            // console.log("Saved: True\n\n", data[i].saved);
+            // console.log("Link:\n\n", data[i].link);
+
             // Display the articles information on the page
             $(".articlesSaved").append(
                 // "<div class=" 
