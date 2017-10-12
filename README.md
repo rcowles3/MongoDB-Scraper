@@ -4,7 +4,13 @@ Web application that scrapes [ESPN](https://espn.com/nba) for the top headlines 
 
 ### Prerequisites
 
-In order for the application to run, you must have [Node](https://docs.npmjs.com/getting-started/installing-node) installed on your computer.
+In order for the application to run, you must have [Node](https://docs.npmjs.com/getting-started/installing-node) and [MongoDB](https://docs.mongodb.com/manual/installation/) installed on your computer.
+
+If using Homebrew, Mongo can be installed via the command: 
+
+```
+brew install mongodb
+```
 
 After making sure your system is running Node, **package.json** has all the npm packages needed to run application.
 
