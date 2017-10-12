@@ -4,9 +4,7 @@ Web application that scrapes [ESPN](https://espn.com/nba) for the top headlines 
 
 ### Prerequisites
 
-In order for the application to run, you must have node installed on your computer, as well as MySQL.
-
-[Node](https://docs.npmjs.com/getting-started/installing-node)
+In order for the application to run, you must have [Node](https://docs.npmjs.com/getting-started/installing-node) installed on your computer.
 
 After making sure your system is running Node, **package.json** has all the npm packages needed to run application.
 
