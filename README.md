@@ -35,14 +35,6 @@ You can use the **git remote** command to confirm that a remote named heroku has
 git remote -v
 ```
 
-To deploy your app to Heroku, you typically use the **git push** command to push the code from your local repository’s master branch to your heroku remote, like so:
-
-```
-git push heroku master
-```
-
-If you come across any errors, it would be advised to review the [Heroku](https://devcenter.heroku.com/articles/git) documentation for further explanation.
-
 In order to deploy your project to Heroku, you must set up an mLab provision. mLab is remote MongoDB database that Heroku supports natively. Follow these steps to get it running:
 
 After you create a Heroku app in your project directory. 
@@ -60,6 +52,14 @@ After you create a Heroku app in your project directory.
     * Notice the value that appears after `MONGODB_URI =>`. This is your URI string. Copy it to a document for safekeeping.
 
 3. When you’re ready to connect Mongoose with your remote database, simply paste the URI string as the lone argument of your `mongoose.connect()` function. That’s it!
+
+To deploy your app to Heroku, you typically use the **git push** command to push the code from your local repository’s master branch to your heroku remote, like so:
+
+```
+git push heroku master
+```
+
+If you come across any errors, it would be advised to review the [Heroku](https://devcenter.heroku.com/articles/git) documentation for further explanation.
 
 ## Built With
 
